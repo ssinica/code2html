@@ -14,4 +14,10 @@ public interface IHtmlTheme {
 
     String getCommentStyle();
 
+	String getBorderColor();
+
+	String getBackgroundColor();
+
+	String getTrademarkColor();
+
 }

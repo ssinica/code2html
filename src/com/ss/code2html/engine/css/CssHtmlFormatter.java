@@ -19,18 +19,23 @@ public class CssHtmlFormatter implements IHtmlFormatter {
     private String wrap(String code, IHtmlTheme theme) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("<div style='font-size:12px;line-height:1.3;padding:7px;border:1px solid #999;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;position:relative;'>");
-        sb.append(genCopyrights());
+		sb.append("<div style='font-size:12px;line-height:1.3;padding:7px;border:1px solid "
+				+ theme.getBorderColor()
+				+ ";-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;position:relative;background-color: "
+				+ theme.getBackgroundColor() + ";'>");
+		sb.append(genCopyrights(theme));
         sb.append(code);
         sb.append("</div>");
 
         return sb.toString();
     }
 
-    private String genCopyrights() {
+	private String genCopyrights(IHtmlTheme theme) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<div style='font-size:10px;color:#999;font-style:italic;position:absolute;top:5px;right:10px;'>");
-        sb.append("<span>Powered by</span>&nbsp;<a style='color:#999;' href='http://github/code2html'>http://github/code2html</a>");
+        sb.append("<div style='font-size:10px;color:" + theme.getTrademarkColor() + ";font-style:italic;position:absolute;top:5px;right:10px;'>");
+		sb.append("<span>Powered by</span>&nbsp;<a style='color:"
+				+ theme.getTrademarkColor()
+				+ ";' href='https://github.com/ssinica/code2html'>https://github.com/ssinica/code2html</a>");
         sb.append("</div>");
         return sb.toString();
     }

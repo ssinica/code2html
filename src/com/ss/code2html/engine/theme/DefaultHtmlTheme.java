@@ -22,8 +22,7 @@ public class DefaultHtmlTheme implements IHtmlTheme {
 
     @Override
     public String getImportantTextStyle() {
-        //return "color:#3F7F7F;";
-        return "color:green;";
+		return "color:#3F7F7F;";
     }
 
     @Override
@@ -35,5 +34,20 @@ public class DefaultHtmlTheme implements IHtmlTheme {
     public String getCommentStyle() {
         return "color:#64B3F4;";
     }
+
+	@Override
+	public String getBorderColor() {
+		return "#E1E1E8";
+	}
+
+	@Override
+	public String getBackgroundColor() {
+		return "#F7F7F9";
+	}
+
+	@Override
+	public String getTrademarkColor() {
+		return "#999";
+	}
 
 }
