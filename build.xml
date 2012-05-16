@@ -1,0 +1,40 @@
+<project>
+	<property name="src.dir" location="./src" />
+	<property name="build.dir" location="./build" />
+	<property name="lib.dir" location="./lib" />
+	<property name="project.dir" location="." />
+
+	<target name="build" depends="clean,create-build-dir,copy-resources,compile">
+
+	</target>
+
+	<target name="clean" description="Cleans build directory">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="create-build-dir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/classes" />
+	</target>
+
+	<target name="copy-resources">
+		<copy todir="${build.dir}">
+			<dirset dir="${project.dir}">
+				<include name="lib" />
+				<include name="props" />
+			</dirset>
+		</copy>
+	</target>
+
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+			<include name="*.dll" />
+		</fileset>
+	</path>
+
+	<target name="compile" description="Compiles Java source">
+		<javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="project.classpath" debug="on" encoding="utf-8" source="1.6" target="1.6" failonerror="true" />
+	</target>
+
+</project>

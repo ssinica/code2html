@@ -17,7 +17,7 @@ public class DefaultHtmlTheme implements IHtmlTheme {
 
     @Override
     public String getNormalTextStyle() {
-        return "color:#666;";
+		return "color:#5490FF;";
     }
 
     @Override
@@ -27,7 +27,7 @@ public class DefaultHtmlTheme implements IHtmlTheme {
 
     @Override
     public String getStringStyle() {
-        return "color:#5490FF;";
+		return "color:#666;";
     }
 
     @Override

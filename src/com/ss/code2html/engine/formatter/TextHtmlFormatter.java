@@ -1,4 +1,4 @@
-package com.ss.code2html.engine.text;
+package com.ss.code2html.engine.formatter;
 
 import java.io.BufferedReader;
 

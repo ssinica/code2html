@@ -2,7 +2,8 @@ package com.ss.code2html.engine;
 
 public enum Theme {
 
-    DEFAULT("similar to default eclipse theme");
+    DEFAULT("similar to default eclipse theme"),
+    DARK("dark, black theme, best for bash");
 
     private String description;
 
@@ -14,13 +15,13 @@ public enum Theme {
         return description;
     }
 
-    public static Theme getByName(String name) {
+	public static Theme getByName(String name, Theme defaultValue) {
         for (Theme th : values()) {
             if (th.name().equalsIgnoreCase(name)) {
                 return th;
             }
         }
-        return null;
+		return defaultValue;
     }
 
 }

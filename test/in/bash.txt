@@ -1,0 +1,5 @@
+/*test comment*/
+// comment
+git push origin master
+ant build
+copy "c:/test.css" to "d:/temp"
