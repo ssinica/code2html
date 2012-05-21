@@ -27,7 +27,7 @@ public class DarkHtmlTheme implements IHtmlTheme {
 
 	@Override
 	public String getStringStyle() {
-		return "color:blue;";
+		return "color:#ccc;";
 	}
 
 	@Override

@@ -38,22 +38,12 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
 				span = genSpan(token, theme.getCommentStyle());
 			} else if (isTag(token, ctx)) {
 				span = genSpan(token, theme.getImportantTextStyle());
-			//	ctx.setLastTokenWasStyleParam(false);
-			//} else if (isStyleParamName(token)) {
-			//	span = genSpan(res[0], theme.getReservedWordStyle());
-			//	ctx.setLastTokenWasStyleParam(true);
 			} else if ("&lt;!--".equals(token)) {
 				span = genSpan(token, theme.getCommentStyle());
 				ctx.setLastTokenWasCommentStart(true);
 			} else if ("--&gt;".equals(token)) {
 				span = genSpan(token, theme.getCommentStyle());
 				ctx.setLastTokenWasCommentStart(false);
-			//} else if (ctx.isLastTokenWasStyleParam()) {
-			//	span = genSpan(res[0], theme.getNormalTextStyle());
-			//	if (res[0].endsWith(";") || res[1] != null
-			//			&& ";".equals(res[1])) {
-			//		ctx.setLastTokenWasStyleParam(false);
-			//	}
 			} else {
 				
 				// rel="stylesheet">
@@ -83,6 +73,18 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
 							String p1 = part2.substring(0, idx1);
 							String p2 = part2.substring(idx1 + 6, idx2);
 							String p3 = part2.substring(idx2 + 6);
+							
+							if(!Utils.isEmpty(p1)) {
+								tempBuf.append(genSpan(p1, theme.getNormalTextStyle()));
+							}
+							tempBuf.append(genSpan("&quot;", theme.getNormalTextStyle()));
+							if(!Utils.isEmpty(p2)) {
+								tempBuf.append(genSpan(p2, theme.getStringStyle()));
+							}
+							tempBuf.append(genSpan("&quot;", theme.getNormalTextStyle()));
+							if(!Utils.isEmpty(p3)) {
+								tempBuf.append(genSpan(p3, theme.getNormalTextStyle()));
+							}
 						}
 					}
 
@@ -100,6 +102,8 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
         }
 
         String s = wrapWithSpacesAddBr(buf.toString(), leftSpacesCount, rightSpacesCount);
+		s = s.replaceAll("==CLR==", " ");
+
         ctx.appendFormattedLine(s);
         return ctx;
 	}
@@ -115,6 +119,18 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
 			return "";
 		}
 
+		line = findPairDelims(line, "\"", new TransformCallback() {
+			@Override
+			public String transform(String str) {
+				if (Utils.isEmpty(str)) {
+					return "";
+				} else {
+					str = str.replaceAll(" ", "==CLR==");
+					return str;
+				}
+			}
+		});
+
 		line = line.replaceAll("<!--", "==C2H== <!-- ==C2H==");
 		line = line.replaceAll("-->", "==C2H== --> ==C2H==");
 		line = line.replaceAll(">", "> ==C2H==");
@@ -127,24 +143,35 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
 		return line;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(new HtmlHtmlFormatter().prepareLine("sad\"asd\"sad<!--asd-->asd'as'd"));
+	private String findPairDelims(String str, String delim, TransformCallback callback) {
+		StringBuilder sb = new StringBuilder();
+		int delimLength = delim.length();
+		int idx = str.indexOf(delim);
+		int lastWrittenIdx = 0;
+		int delimCounter = 0;
 
-		String token = "123567=";
-		int equalSignIdx = token.indexOf("=");
-		String part1 = token.substring(0, equalSignIdx);
-		String part2 = token.substring(equalSignIdx + 1);
-		System.out.println("1: " + part1 + ", 2: " + part2);
-
-		String s = "123&quot;456&quot;789";
-		int idx1 = part2.indexOf("&quot;");
-		int idx2 = part2.lastIndexOf("&quot;");
-		if (idx1 >= 0 && idx2 > 0 && idx1 != idx2) {
-			String p1 = part2.substring(0, idx1);
-			String p2 = part2.substring(idx1 + 6, idx2);
-			String p3 = part2.substring(idx2 + 6);
-			System.out.println(p1 + "|" + p2 + "|" + p3);
+		while (idx >= 0) {
+			delimCounter += 1;
+			String before = str.substring(lastWrittenIdx, idx);
+			int beforeLength = before.length();
+			if (delimCounter % 2 == 0) {
+				before = callback.transform(before);
+			}
+			sb.append(before);
+			sb.append(delim);
+			lastWrittenIdx += beforeLength + delimLength;
+			idx = str.indexOf(delim, lastWrittenIdx);
 		}
+
+		if (lastWrittenIdx < str.length()) {
+			sb.append(str.substring(lastWrittenIdx, str.length()));
+		}
+
+		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		
 	}
 
 	private class Ctx extends AbstractFormatCtx {
@@ -161,4 +188,7 @@ public class HtmlHtmlFormatter extends AbstractHtmlFormatter {
 
 	}
 
+	public interface TransformCallback {
+		String transform(String str);
+	}
 }
