@@ -1,29 +1,26 @@
-<project>
-	<property name="src.dir" location="./src" />
-	<property name="build.dir" location="./build" />
-	<property name="lib.dir" location="./lib" />
-	<property name="project.dir" location="." />
+<project name="code2html" basedir="." default="build">
 
-	<target name="build" depends="clean,create-build-dir,copy-resources,compile">
+	<description>Utility to convert code to html.</description>
+
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="build.dir" location="${basedir}/build" />
+	<property name="lib.dir" location="${basedir}/lib" />
+	<property name="zip.source.dir" location="${build.dir}/zipsource" />
+	<property name="l4j.dir" location="${basedir}/launch4j" />
+	<property file="${basedir}/code2html.properties" />
+
+	<target name="build" depends="clean,prepare-build-dir,compile,create-jars,copy-resources,make-l4j-app">
 
 	</target>
 
-	<target name="clean" description="Cleans build directory">
+	<target name="clean">
 		<delete dir="${build.dir}" />
 	</target>
 
-	<target name="create-build-dir">
+	<target name="prepare-build-dir">
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.dir}/classes" />
-	</target>
-
-	<target name="copy-resources">
-		<copy todir="${build.dir}">
-			<dirset dir="${project.dir}">
-				<include name="lib" />
-				<include name="props" />
-			</dirset>
-		</copy>
+		<mkdir dir="${zip.source.dir}" />
 	</target>
 
 	<path id="project.classpath">
@@ -33,8 +30,50 @@
 		</fileset>
 	</path>
 
-	<target name="compile" description="Compiles Java source">
+	<target name="compile">
 		<javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="project.classpath" debug="on" encoding="utf-8" source="1.6" target="1.6" failonerror="true" />
+	</target>
+
+	<target name="create-jars">
+		<jar destfile="${build.dir}/code2html-${build.number}.jar" basedir="${build.dir}/classes">
+			<exclude name="**/console/**" />
+		</jar>
+		<jar destfile="${build.dir}/code2html-client-${build.number}.jar" basedir="${build.dir}/classes">
+			<include name="**/console/**" />
+		</jar>
+	</target>
+
+	<target name="copy-resources">
+		<copy todir="${zip.source.dir}">
+			<fileset dir="${basedir}">
+				<include name="lib/*" />
+				<include name="props/*" />
+				<include name="res/*" />				
+			</fileset>
+		</copy>
+		<copy todir="${zip.source.dir}/lib">
+			<fileset dir="${build.dir}">
+				<include name="code2html-*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${l4j.dir}/launch4j.jar
+	        :${l4j.dir}/lib/xstream.jar" />
+
+	<target name="make-l4j-app">
+		<launch4j>
+			<config headerType="gui" outfile="${zip.source.dir}/code2html.exe" dontWrapJar="true">
+				<classPath mainClass="com.ss.code2html.console.Code2HtmlTray">
+					<cp>./lib/*</cp>
+				</classPath>
+				<jre minVersion="1.6.0">
+					<opt>-Dlaunch4j.exedir="%EXEDIR%"</opt>
+					<opt>-Dlaunch4j.exefile="%EXEFILE%"</opt>
+				</jre>				
+			</config>
+		</launch4j>
+
 	</target>
 
 </project>

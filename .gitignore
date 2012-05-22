@@ -8,3 +8,5 @@
 .project
 /test/out/*
 .settings
+/launch4j/*
+/build/*
