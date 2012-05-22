@@ -39,6 +39,13 @@ and client application. Client application uses [JIntellitype](http://melloware.
 register global hotkeys, so for now it can be used only from Windows (but it can be easy rewritten to use alternative libraries
 for other OS).
 
+![code2html is ready to work!](https://github.com/downloads/ssinica/code2html/code2html.png)
+
 Client application resides in system tray and listens for predefined key press. Distinct hot key are defined for each code type:
-* Ctrl + Shift + 1    ==>  CSS
-* Ctrl + Shift + 2    ==>  HTML
+* Ctrl + Shift + 1  for  CSS
+* Ctrl + Shift + 2  for  HTML
+               
+You can assign different formatting themes for each code type in file '/props/code2html.properties'. Two themes are available for the moment:
+
+* default
+* dark
