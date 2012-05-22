@@ -54,8 +54,8 @@ Examples
 --------
 
 
-<div markdown="0">
-<span id="true" style="color:red;">hello</span>
+<div>
+<div id="true" style="color:red;">hello</div>
 </div>
 
 
