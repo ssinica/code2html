@@ -7,11 +7,10 @@
 	<property name="lib.dir" location="${basedir}/lib" />
 	<property name="zip.source.dir" location="${build.dir}/zipsource" />
 	<property name="l4j.dir" location="${basedir}/launch4j" />
-	<property file="${basedir}/code2html.properties" />
+	<property file="${basedir}/build.properties" />
 
-	<target name="build" depends="clean,prepare-build-dir,compile,create-jars,copy-resources,make-l4j-app">
-
-	</target>
+	<target name="build" depends="clean,prepare-build-dir,compile,create-jars" />
+	<target name="build-app" depends="build,copy-resources,make-l4j-app,zip-app" />		
 
 	<target name="clean">
 		<delete dir="${build.dir}" />
@@ -73,7 +72,10 @@
 				</jre>				
 			</config>
 		</launch4j>
-
 	</target>
+	
+	<target name="zip-app">
+		<zip destfile="${build.dir}/code2html-${build.number}.zip" basedir="${zip.source.dir}" />
+	</target>	
 
 </project>

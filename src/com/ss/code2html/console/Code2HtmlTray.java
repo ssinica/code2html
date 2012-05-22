@@ -154,33 +154,37 @@ public class Code2HtmlTray implements Runnable, HotkeyListener, ClipboardOwner {
 			jinstance.registerHotKey(i + 1, JIntellitype.MOD_CONTROL + JIntellitype.MOD_SHIFT, ch);
 			System.out.println("      key Ctrl+Shift+" + ch + " registered for " + codeTypes.get(i).name());
 		}
+
+		infoMessageVisualizer.showInfoMessage("Code2Html is ready!");
     }
     
     private void loadProperties() throws Exception {
+
+		// TODO:
+
         Properties props = new Properties();
         props.load(new FileInputStream(new File("./props/code2html.properties")));
 
 		String keyHandler1 = props.getProperty("key.handler.1", "CSS");
-		String keyHandler2 = props.getProperty("key.handler.2", "BASH");
-		String keyHandler3 = props.getProperty("key.handler.3", "JAVA");
+		String keyHandler2 = props.getProperty("key.handler.2", "HTML");
+
 		codeTypes.add(CodeType.getByName(keyHandler1, CodeType.CSS));
-		codeTypes.add(CodeType.getByName(keyHandler2, CodeType.BASH));
-		codeTypes.add(CodeType.getByName(keyHandler3, CodeType.JAVA));
+		codeTypes.add(CodeType.getByName(keyHandler2, CodeType.HTML));
 
 		String themeCSS = props.getProperty("theme.CSS", "default");
-		String themeBASH = props.getProperty("theme.BASH", "default");
-		String themeJAVA = props.getProperty("theme.JAVA", "default");
+		String themeHTML = props.getProperty("theme.HTML", "dark");
+
 		Theme themeCss = Theme.getByName(themeCSS, Theme.DEFAULT);
-		Theme themeBash = Theme.getByName(themeBASH, Theme.DEFAULT);
-		Theme themeJava = Theme.getByName(themeJAVA, Theme.DEFAULT);
+		Theme themeHtml = Theme.getByName(themeHTML, Theme.DARK);
 
 		System.out.println("Register themes:");
+		
 		Code2HtmlFactory.setTheme(CodeType.CSS, themeCss);
 		System.out.println("      for " + CodeType.CSS.name() + " registered theme " + themeCss.name());
-		Code2HtmlFactory.setTheme(CodeType.BASH, themeBash);
-		System.out.println("      for " + CodeType.BASH.name() + " registered theme " + themeBash.name());
-		Code2HtmlFactory.setTheme(CodeType.JAVA, themeJava);
-		System.out.println("      for " + CodeType.JAVA.name() + " registered theme " + themeJava.name());
+		
+		Code2HtmlFactory.setTheme(CodeType.HTML, themeHtml);
+		System.out.println("      for " + CodeType.HTML.name() + " registered theme " + themeHtml.name());
+				
     }
 
     @Override

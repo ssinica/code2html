@@ -2,7 +2,7 @@ package com.ss.code2html.engine;
 
 public enum CodeType {
 
-	CSS, BASH, JAVA;
+	CSS, HTML;
 
 	public static CodeType getByName(String name, CodeType defaultValue) {
 		for (CodeType th : values()) {
