@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="code2html : Utility to generate HTML from code for pasting to blogs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>code2html</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ssinica/code2html">View on GitHub</a>
+
+          <h1 id="project_title">code2html</h1>
+          <h2 id="project_tagline">Utility to generate HTML from code for pasting to blogs</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ssinica/code2html/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ssinica/code2html/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1><a href="http://ssinica.github.com/code2html/">code2html</a></h1>
+
+<p>Code2Html is library which converts code to HTML.</p>
+
+<h2>When you may need it?</h2>
+
+<p>Assume you have code which you want to share on your blog. Code2Html helps to resolve this task in very simple yet beautiful manner. Copy your code to clipboard (Ctrl + C), press predefined key combination, and paste (Ctrl + V) HTML snippet to your blog. That is it!</p>
+
+<h2>Supported code types</h2>
+
+<p>For now following code types are supported:</p>
+
+<ul>
+<li>CSS</li>
+<li>HTML</li>
+</ul><h2>Quick Start</h2>
+
+<ul>
+<li>Download latest version from <a href="https://github.com/ssinica/code2html/downloads">https://github.com/ssinica/code2html/downloads</a>.</li>
+<li>Unzip and run code2html.exe</li>
+</ul><h2>Prerequisites</h2>
+
+<ul>
+<li>JRE 6.0</li>
+<li>Windows 64bit</li>
+</ul><h2>Under the hood</h2>
+
+<p>Code2Html is written in Java. In <a href="https://github.com/ssinica/code2html/downloads">code2html.zip</a> you will find engine jar and client application. Client application uses <a href="http://melloware.com/products/jintellitype/index.html">JIntellitype</a> to register global hotkeys, so for now it can be used only from Windows (but it can be easy rewritten to use alternative libraries for other OS).</p>
+
+<p>Client application resides in system tray and listens for predefined key press. Distinct hot key are defined for each code type:</p>
+
+<ul>
+<li>
+<code>Ctrl + Shift + 1</code>  for  CSS</li>
+<li>
+<code>Ctrl + Shift + 2</code>  for  HTML</li>
+</ul><p>You can assign different formatting themes for each code type in file <code>/props/code2html.properties</code>. Two themes are available for the moment:</p>
+
+<ul>
+<li>default</li>
+<li>dark</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">code2html maintained by <a href="https://github.com/ssinica">ssinica</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
