@@ -39,3 +39,6 @@ and client application. Client application uses [JIntellitype](http://melloware.
 register global hotkeys, so for now it can be used only from Windows (but it can be easy rewritten to use alternative libraries
 for other OS).
 
+Client application resides in system tray and listens for predefined key press. Distinct hot key are defined for each code type:
+* Ctrl + Shift + 1    ==>  CSS
+* Ctrl + Shift + 2    ==>  HTML
