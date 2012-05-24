@@ -5,6 +5,7 @@ import java.util.HashMap;
 import com.ss.code2html.engine.formatter.CssHtmlFormatter;
 import com.ss.code2html.engine.formatter.HtmlHtmlFormatter;
 import com.ss.code2html.engine.formatter.TextHtmlFormatter;
+import com.ss.code2html.engine.theme.DarkHtmlTheme;
 import com.ss.code2html.engine.theme.DefaultHtmlTheme;
 
 public class Code2HtmlFactory {
@@ -13,6 +14,7 @@ public class Code2HtmlFactory {
     private static IHtmlFormatter cssFormatter;
 	private static IHtmlFormatter htmlFormatter;
 	private static IHtmlTheme defaultTheme;
+	private static IHtmlTheme darkTheme;
 	private static HashMap<CodeType, Theme> codeType2Theme = new HashMap<CodeType, Theme>();
 
     private Code2HtmlFactory() {
@@ -47,10 +49,19 @@ public class Code2HtmlFactory {
 		switch (theme) {
 		case DEFAULT:
 			return getDefaultTheme();
+		case DARK:
+			return getDarkTheme();
 		default:
 			return getDefaultTheme();
 		}
     }
+
+	private static IHtmlTheme getDarkTheme() {
+		if (darkTheme == null) {
+			darkTheme = new DarkHtmlTheme();
+		}
+		return darkTheme;
+	}
 
 	public static void setTheme(CodeType codeType, Theme theme) {
 		codeType2Theme.put(codeType, theme);
