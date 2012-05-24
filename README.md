@@ -22,6 +22,17 @@ Quick Start
 * Download latest version from https://github.com/ssinica/code2html/downloads.
 * Unzip and run code2html.exe
 
+Status
+------
+
+Project is in passive development. This means - I will add more features when I will need them and fix bugs when they will become critical for me :) So roadmap for future:
+
+* refactor/rewrite engine;
+* add BASH code support;
+* add Java code support;
+* Polish client and prepare builds for different OS;
+* Create simple web service to leverage code2html engine.
+
 Prerequisites
 -------------
 
