@@ -3,6 +3,7 @@ package com.ss.code2html.engine;
 import java.util.HashMap;
 
 import com.ss.code2html.engine.formatter.CssHtmlFormatter;
+import com.ss.code2html.engine.formatter.HtmlHtmlFormatter;
 import com.ss.code2html.engine.formatter.TextHtmlFormatter;
 import com.ss.code2html.engine.theme.DefaultHtmlTheme;
 
@@ -10,6 +11,7 @@ public class Code2HtmlFactory {
 
     private static IHtmlFormatter textFormatter;
     private static IHtmlFormatter cssFormatter;
+	private static IHtmlFormatter htmlFormatter;
 	private static IHtmlTheme defaultTheme;
 	private static HashMap<CodeType, Theme> codeType2Theme = new HashMap<CodeType, Theme>();
 
@@ -24,6 +26,11 @@ public class Code2HtmlFactory {
                 cssFormatter = new CssHtmlFormatter();
             }
             return cssFormatter;
+		case HTML:
+			if (htmlFormatter == null) {
+				htmlFormatter = new HtmlHtmlFormatter();
+			}
+			return htmlFormatter;
         default:
             if (textFormatter == null) {
                 textFormatter = new TextHtmlFormatter();
