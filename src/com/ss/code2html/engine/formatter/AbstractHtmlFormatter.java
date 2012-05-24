@@ -50,10 +50,10 @@ public abstract class AbstractHtmlFormatter implements IHtmlFormatter {
 
 	private String genCopyrights(IHtmlTheme theme) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<div style='font-size:10px;color:" + theme.getTrademarkColor() + ";font-style:italic;position:absolute;top:5px;right:10px;'>");
+        sb.append("<div style='font-size:10px;color:" + theme.getTrademarkColor() + ";font-style:italic;width:100%;text-align:right;'>");
 		sb.append("<span>Powered by</span>&nbsp;<a style='color:"
 				+ theme.getTrademarkColor()
-				+ ";' href='https://github.com/ssinica/code2html'>https://github.com/ssinica/code2html</a>");
+				+ ";' href='https://github.com/ssinica/code2html'>code2html</a>");
         sb.append("</div>");
         return sb.toString();
     }
