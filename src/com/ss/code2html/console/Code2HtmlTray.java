@@ -33,6 +33,12 @@ import com.ss.code2html.engine.IHtmlTheme;
 import com.ss.code2html.engine.Theme;
 import com.ss.code2html.utils.Utils;
 
+/**
+ * Simple code2html client.
+ * 
+ * @author sergey.sinica
+ * 
+ */
 public class Code2HtmlTray implements Runnable, HotkeyListener, ClipboardOwner {
 
 	private List<CodeType> codeTypes = new ArrayList<CodeType>();
