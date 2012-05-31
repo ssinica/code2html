@@ -15,6 +15,7 @@ For now following code types are supported:
 
 * CSS
 * HTML
+* Bash
 
 Quick Start
 -----------
@@ -28,7 +29,6 @@ Status
 Project is in passive development. This means - I will add more features when I will need them and fix bugs when they will become critical for me :) So roadmap for future:
 
 * refactor/rewrite engine;
-* add BASH code support;
 * add Java code support;
 * Polish client and prepare builds for different OS;
 * Create simple web service to leverage code2html engine.
@@ -49,6 +49,7 @@ Code2Html is written in Java. In [code2html.zip](https://github.com/ssinica/code
 Client application resides in system tray and listens for predefined key press. Distinct hot key are defined for each code type:
 * `Ctrl + Shift + 1`  for  CSS
 * `Ctrl + Shift + 2`  for  HTML
+* `Ctrl + Shift + 3`  for  BASH
                
 You can assign different formatting themes for each code type in file `/props/code2html.properties`. Two themes are available for the moment:
 
