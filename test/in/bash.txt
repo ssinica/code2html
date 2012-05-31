@@ -3,3 +3,14 @@
 git push origin master
 ant build
 copy "c:/test.css" to "d:/temp"
+$ less /srv/logs/log.txt
+$ ls -l
+chmod -R o+w test.txt
+print 'hello word'
+print "hello word"
+
+git config --system --unset-all core.autocrlf
+git config --global --unset-all core.autocrlf
+
+git pull --rebase origin [branch-name]
+git push origin [branch-name]

@@ -1,9 +1,8 @@
 package com.ss.code2html.engine.theme;
 
-import com.ss.code2html.engine.IHtmlTheme;
 import com.ss.code2html.engine.Theme;
 
-public class DefaultHtmlTheme implements IHtmlTheme {
+public class DefaultHtmlTheme extends AbstractHtmlTheme {
 
     @Override
     public Theme getTheme() {

@@ -37,7 +37,9 @@ public abstract class AbstractHtmlFormatter implements IHtmlFormatter {
 	private String wrap(String code, IHtmlTheme theme) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<div style='font-size:12px;line-height:1.3;padding:7px;border:1px solid "
+		sb.append("<div style='width:"
+				+ theme.getSnippetWidth()
+				+ ";font-size:12px;line-height:1.3;padding:7px;border:1px solid "
 				+ theme.getBorderColor()
 				+ ";-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;position:relative;background-color: "
 				+ theme.getBackgroundColor() + ";'>");

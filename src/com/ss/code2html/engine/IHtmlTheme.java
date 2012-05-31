@@ -20,4 +20,6 @@ public interface IHtmlTheme {
 
 	String getTrademarkColor();
 
+	String getSnippetWidth();
+
 }

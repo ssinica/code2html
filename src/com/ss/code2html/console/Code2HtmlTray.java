@@ -171,17 +171,24 @@ public class Code2HtmlTray implements Runnable, HotkeyListener, ClipboardOwner {
         Properties props = new Properties();
         props.load(new FileInputStream(new File("./props/code2html.properties")));
 
+		String snippetWidth = props.getProperty("snippet.width", "600px");
+		Code2HtmlFactory.setSnippetWidth(snippetWidth);
+
 		String keyHandler1 = props.getProperty("key.handler.1", "CSS");
 		String keyHandler2 = props.getProperty("key.handler.2", "HTML");
+		String keyHandler3 = props.getProperty("key.handler.3", "BASH");
 
 		codeTypes.add(CodeType.getByName(keyHandler1, CodeType.CSS));
 		codeTypes.add(CodeType.getByName(keyHandler2, CodeType.HTML));
+		codeTypes.add(CodeType.getByName(keyHandler3, CodeType.BASH));
 
 		String themeCSS = props.getProperty("theme.CSS", "default");
 		String themeHTML = props.getProperty("theme.HTML", "dark");
+		String themeBASH = props.getProperty("theme.BASH", "dark");
 
 		Theme themeCss = Theme.getByName(themeCSS, Theme.DEFAULT);
 		Theme themeHtml = Theme.getByName(themeHTML, Theme.DARK);
+		Theme themeBash = Theme.getByName(themeBASH, Theme.DARK);
 
 		System.out.println("Register themes:");
 		
@@ -190,6 +197,9 @@ public class Code2HtmlTray implements Runnable, HotkeyListener, ClipboardOwner {
 		
 		Code2HtmlFactory.setTheme(CodeType.HTML, themeHtml);
 		System.out.println("      for " + CodeType.HTML.name() + " registered theme " + themeHtml.name());
+
+		Code2HtmlFactory.setTheme(CodeType.BASH, themeBash);
+		System.out.println("      for " + CodeType.BASH.name() + " registered theme " + themeBash.name());
 				
     }
 

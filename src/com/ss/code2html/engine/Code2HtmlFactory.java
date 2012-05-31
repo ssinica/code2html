@@ -2,6 +2,7 @@ package com.ss.code2html.engine;
 
 import java.util.HashMap;
 
+import com.ss.code2html.engine.formatter.BashHtmlFormatter;
 import com.ss.code2html.engine.formatter.CssHtmlFormatter;
 import com.ss.code2html.engine.formatter.HtmlHtmlFormatter;
 import com.ss.code2html.engine.formatter.TextHtmlFormatter;
@@ -13,9 +14,11 @@ public class Code2HtmlFactory {
     private static IHtmlFormatter textFormatter;
     private static IHtmlFormatter cssFormatter;
 	private static IHtmlFormatter htmlFormatter;
+	private static IHtmlFormatter bashFormatter;
 	private static IHtmlTheme defaultTheme;
 	private static IHtmlTheme darkTheme;
 	private static HashMap<CodeType, Theme> codeType2Theme = new HashMap<CodeType, Theme>();
+	private static String snippetWidth = "600px";
 
     private Code2HtmlFactory() {
         
@@ -33,6 +36,11 @@ public class Code2HtmlFactory {
 				htmlFormatter = new HtmlHtmlFormatter();
 			}
 			return htmlFormatter;
+		case BASH:
+			if (bashFormatter == null) {
+				bashFormatter = new BashHtmlFormatter();
+			}
+			return bashFormatter;
         default:
             if (textFormatter == null) {
                 textFormatter = new TextHtmlFormatter();
@@ -72,6 +80,14 @@ public class Code2HtmlFactory {
 			defaultTheme = new DefaultHtmlTheme();
 		}
 		return defaultTheme;
+	}
+
+	public static String getSnippetWidth() {
+		return snippetWidth;
+	}
+
+	public static void setSnippetWidth(String snippetWidth) {
+		Code2HtmlFactory.snippetWidth = snippetWidth;
 	}
 
 }

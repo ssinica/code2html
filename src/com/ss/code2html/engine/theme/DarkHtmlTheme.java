@@ -1,9 +1,8 @@
 package com.ss.code2html.engine.theme;
 
-import com.ss.code2html.engine.IHtmlTheme;
 import com.ss.code2html.engine.Theme;
 
-public class DarkHtmlTheme implements IHtmlTheme {
+public class DarkHtmlTheme extends AbstractHtmlTheme {
 
 	@Override
 	public Theme getTheme() {
@@ -22,7 +21,7 @@ public class DarkHtmlTheme implements IHtmlTheme {
 
 	@Override
 	public String getImportantTextStyle() {
-		return "color:green;";
+		return "color:#00E68A;";
 	}
 
 	@Override
@@ -37,12 +36,12 @@ public class DarkHtmlTheme implements IHtmlTheme {
 
 	@Override
 	public String getBorderColor() {
-		return "#666";
+		return "#333";
 	}
 
 	@Override
 	public String getBackgroundColor() {
-		return "#000";
+		return "#666";
 	}
 
 	@Override
